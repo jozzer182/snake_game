@@ -23,7 +23,7 @@ msix_config:
   display_name: Fidi - Snake Game
   publisher_display_name: ZarabandaJose
   identity_name: ZarabandaJose.Fidi-SnakeGame
-  publisher: CN=73F75044-1C26-4198-832A-7F9C0F5DAE1A
+  publisher: CN=73F75044-1C00-4198-B32A-7DC00F5DAE1A
   msix_version: 1.0.0.0
   logo_path: assets/icon.png
   store: true
