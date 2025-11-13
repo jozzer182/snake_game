@@ -45,6 +45,7 @@ A complete cross-platform classic Snake game built with Flutter and Flame. Play 
 ## Privacy
 
 Fidi respects your privacy. The app:
+
 - Does **NOT** collect any personal data
 - Does **NOT** require internet connection
 - Stores all data locally on your device
@@ -143,12 +144,15 @@ Output: `build/windows/runner/Release/`
 #### Android APK
 
 For development/testing:
+
 ```bash
 flutter build apk
 ```
 
 For production release with signing:
+
 1. Create `android/key.properties` (never commit this file):
+
 ```properties
 storePassword=YOUR_PASSWORD
 keyPassword=YOUR_PASSWORD
@@ -157,11 +161,13 @@ storeFile=../upload-keystore.jks
 ```
 
 2. Generate your keystore:
+
 ```bash
 keytool -genkey -v -keystore android/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 ```
 
 3. Build signed APK:
+
 ```bash
 flutter build apk --release
 ```

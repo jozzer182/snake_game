@@ -26,6 +26,7 @@ This data is stored locally on your device using Flutter's `shared_preferences` 
 ## No Analytics or Tracking
 
 We do not use:
+
 - Analytics services
 - Advertising networks
 - Tracking tools
@@ -35,6 +36,7 @@ We do not use:
 ## No Internet Connection Required
 
 Fidi operates completely offline. The app does not:
+
 - Connect to the internet during gameplay
 - Send any data to external servers
 - Download content from remote sources
@@ -55,6 +57,7 @@ All game data is stored locally on your device and is protected by your device's
 ## Data Deletion
 
 You can delete all app data at any time by:
+
 1. Uninstalling the app from your device
 2. Clearing the app's data through your device settings
 
@@ -63,6 +66,7 @@ This will remove all saved settings and scores.
 ## Third-Party Services
 
 Fidi uses the following Flutter packages that operate locally on your device:
+
 - **flame**: Game engine for rendering graphics
 - **shared_preferences**: Local data persistence
 - **url_launcher**: Opens external links in your browser (only when you click the developer link)
