@@ -23,20 +23,21 @@ class GameOverOverlay extends StatelessWidget {
     return Container(
       color: Colors.black.withOpacity(0.7),
       child: Center(
-        child: Card(
-          margin: const EdgeInsets.all(32),
-          child: Padding(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
+        child: SingleChildScrollView(
+          child: Card(
+            margin: const EdgeInsets.all(20),
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
                 // Game Over icon
                 Icon(
                   Icons.sentiment_dissatisfied,
-                  size: 80,
+                  size: 60,
                   color: Theme.of(context).colorScheme.error,
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
 
                 // Title
                 Text(
@@ -139,7 +140,7 @@ class GameOverOverlay extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 20),
 
                 // Play again button
                 SizedBox(
@@ -149,11 +150,11 @@ class GameOverOverlay extends StatelessWidget {
                     icon: const Icon(Icons.replay),
                     label: const Text('Play Again'),
                     style: FilledButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
 
                 // Back to menu button
                 SizedBox(
@@ -163,7 +164,7 @@ class GameOverOverlay extends StatelessWidget {
                     icon: const Icon(Icons.home),
                     label: const Text('Back to Menu'),
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
                   ),
                 ),
@@ -172,6 +173,7 @@ class GameOverOverlay extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
   }
 }

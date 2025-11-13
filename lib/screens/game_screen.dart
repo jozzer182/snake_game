@@ -138,11 +138,15 @@ class _GameScreenState extends State<GameScreen> {
             builder: (context, constraints) {
               // Determine if we're in landscape or portrait
               final isLandscape = constraints.maxWidth > constraints.maxHeight;
+              final isMobile = _isMobile();
               
+              // In landscape mode on mobile, don't show control buttons at all
+              // Users can use swipe gestures instead
               return _buildGameLayout(
                 context: context,
                 constraints: constraints,
                 isLandscape: isLandscape,
+                showButtons: isMobile && !isLandscape,
               );
             },
           ),
@@ -155,43 +159,35 @@ class _GameScreenState extends State<GameScreen> {
     required BuildContext context,
     required BoxConstraints constraints,
     required bool isLandscape,
+    required bool showButtons,
   }) {
-    if (isLandscape) {
-      // Landscape: Controls on the side
-      return Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Column(
-              children: [
-                _buildScoreBar(),
-                Expanded(
-                  child: _buildGameArea(constraints),
-                ),
-              ],
+    return Column(
+      children: [
+        _buildScoreBar(),
+        Expanded(
+          child: _buildGameArea(constraints),
+        ),
+        // Only show control buttons in portrait mode on mobile
+        // In landscape, rely on swipe gestures only
+        if (showButtons && _gameState == GameState.playing)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8, top: 4),
+            child: _buildTouchControls(),
+          ),
+        // Show swipe hint in landscape mode on mobile
+        if (_isMobile() && isLandscape && _gameState == GameState.playing)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Swipe to control',
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey[600],
+              ),
             ),
           ),
-          // Controls on the right in landscape
-          if (_isMobile()) ...[
-            SizedBox(
-              width: 200,
-              child: _buildTouchControls(),
-            ),
-          ],
-        ],
-      );
-    } else {
-      // Portrait: Controls on the bottom
-      return Column(
-        children: [
-          _buildScoreBar(),
-          Expanded(
-            child: _buildGameArea(constraints),
-          ),
-          if (_isMobile()) _buildTouchControls(),
-        ],
-      );
-    }
+      ],
+    );
   }
 
   Widget _buildScoreBar() {
@@ -205,13 +201,18 @@ class _GameScreenState extends State<GameScreen> {
   Widget _buildGameArea(BoxConstraints constraints) {
     return Stack(
       children: [
-        // Game widget with gesture detection for swipes and tap to focus
+        // Game widget with gesture detection for swipes (only when playing)
         GestureDetector(
-          onPanEnd: _handleSwipe,
-          onTap: () {
-            // Ensure focus when user clicks on game area (important for Windows)
-            _focusNode.requestFocus();
-          },
+          onPanEnd: _gameState == GameState.playing ? _handleSwipe : null,
+          onTap: _gameState == GameState.playing
+              ? () {
+                  // Ensure focus when user clicks on game area (important for Windows)
+                  _focusNode.requestFocus();
+                }
+              : null,
+          behavior: _gameState == GameState.playing
+              ? HitTestBehavior.opaque
+              : HitTestBehavior.deferToChild,
           child: Center(
             child: AspectRatio(
               aspectRatio: 1, // Keep game board square
@@ -249,8 +250,9 @@ class _GameScreenState extends State<GameScreen> {
 
   Widget _buildTouchControls() {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(8),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Up button
@@ -258,33 +260,35 @@ class _GameScreenState extends State<GameScreen> {
             icon: Icons.arrow_upward,
             onPressed: () => _game.handleSwipe(Direction.up),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           // Left, Down, Right buttons
           Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildDirectionButton(
                 icon: Icons.arrow_back,
                 onPressed: () => _game.handleSwipe(Direction.left),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 6),
               _buildDirectionButton(
                 icon: Icons.arrow_downward,
                 onPressed: () => _game.handleSwipe(Direction.down),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 6),
               _buildDirectionButton(
                 icon: Icons.arrow_forward,
                 onPressed: () => _game.handleSwipe(Direction.right),
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 8),
           // Hint text
           Text(
             'Swipe or use buttons',
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                  fontSize: 10,
                 ),
           ),
         ],
@@ -297,8 +301,8 @@ class _GameScreenState extends State<GameScreen> {
     required VoidCallback onPressed,
   }) {
     return SizedBox(
-      width: 60,
-      height: 60,
+      width: 56,
+      height: 56,
       child: FilledButton(
         onPressed: onPressed,
         style: FilledButton.styleFrom(
@@ -307,7 +311,7 @@ class _GameScreenState extends State<GameScreen> {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        child: Icon(icon, size: 32),
+        child: Icon(icon, size: 28),
       ),
     );
   }

@@ -21,130 +21,139 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         child: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(32),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // App Icon
-                          Container(
-                            width: 120,
-                            height: 120,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(24),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  blurRadius: 20,
-                                  offset: const Offset(0, 10),
-                                ),
-                              ],
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(24),
-                              child: Image.asset(
-                                'assets/icon.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 24),
-                          
-                          // Title with snake emoji
-                          Row(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              // Adjust spacing based on available vertical space
+              final hasLimitedHeight = constraints.maxHeight < 600;
+              final spacingAfterSubtitle = hasLimitedHeight ? 32.0 : 60.0;
+              final iconSize = hasLimitedHeight ? 100.0 : 120.0;
+              
+              return Column(
+                children: [
+                  Expanded(
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(32),
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                'Fidi',
-                                style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).colorScheme.onPrimaryContainer,
+                              // App Icon
+                              Container(
+                                width: iconSize,
+                                height: iconSize,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(24),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.2),
+                                      blurRadius: 20,
+                                      offset: const Offset(0, 10),
                                     ),
+                                  ],
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(24),
+                                  child: Image.asset(
+                                    'assets/icon.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 24),
+                              
+                              // Title with snake emoji
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Fidi',
+                                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                                          fontWeight: FontWeight.bold,
+                                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Snake Game',
+                                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                                    ),
+                              ),
+                              SizedBox(height: spacingAfterSubtitle),
+
+                              // Play button
+                              SizedBox(
+                                width: 250,
+                                child: FilledButton.icon(
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed('/game');
+                                  },
+                                  icon: const Icon(Icons.play_arrow, size: 28),
+                                  label: const Text('Play'),
+                                  style: FilledButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(vertical: 20),
+                                    textStyle: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+
+                              // Settings button
+                              SizedBox(
+                                width: 250,
+                                child: OutlinedButton.icon(
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed('/settings');
+                                  },
+                                  icon: const Icon(Icons.settings),
+                                  label: const Text('Settings'),
+                                  style: OutlinedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(vertical: 16),
+                                    textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+
+                              // Scores button
+                              SizedBox(
+                                width: 250,
+                                child: OutlinedButton.icon(
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed('/scores');
+                                  },
+                                  icon: const Icon(Icons.leaderboard),
+                                  label: const Text('Scores'),
+                                  style: OutlinedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(vertical: 16),
+                                    textStyle: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Snake Game',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  color: Theme.of(context).colorScheme.onSecondaryContainer,
-                                ),
-                          ),
-                          const SizedBox(height: 60),
-
-                          // Play button
-                          SizedBox(
-                            width: 250,
-                            child: FilledButton.icon(
-                              onPressed: () {
-                                Navigator.of(context).pushNamed('/game');
-                              },
-                              icon: const Icon(Icons.play_arrow, size: 28),
-                              label: const Text('Play'),
-                              style: FilledButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 20),
-                                textStyle: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-
-                          // Settings button
-                          SizedBox(
-                            width: 250,
-                            child: OutlinedButton.icon(
-                              onPressed: () {
-                                Navigator.of(context).pushNamed('/settings');
-                              },
-                              icon: const Icon(Icons.settings),
-                              label: const Text('Settings'),
-                              style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 16),
-                                textStyle: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-
-                          // Scores button
-                          SizedBox(
-                            width: 250,
-                            child: OutlinedButton.icon(
-                              onPressed: () {
-                                Navigator.of(context).pushNamed('/scores');
-                              },
-                              icon: const Icon(Icons.leaderboard),
-                              label: const Text('Scores'),
-                              style: OutlinedButton.styleFrom(
-                                padding: const EdgeInsets.symmetric(vertical: 16),
-                                textStyle: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              
-              // Footer
-              _buildFooter(context),
-            ],
+                  
+                  // Footer
+                  _buildFooter(context),
+                ],
+              );
+            },
           ),
         ),
       ),
