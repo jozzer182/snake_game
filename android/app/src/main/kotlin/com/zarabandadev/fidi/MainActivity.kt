@@ -1,4 +1,4 @@
-package com.example.snakegame
+package com.zarabandadev.fidi
 
 import io.flutter.embedding.android.FlutterActivity
 

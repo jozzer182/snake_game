@@ -1,4 +1,4 @@
-# Snake Flutter 🐍
+# Fidi - Snake Game 🐍
 
 A complete cross-platform classic Snake game built with Flutter and Flame. Play on Android, iOS, Web, and Windows with the same codebase!
 
@@ -21,7 +21,7 @@ A complete cross-platform classic Snake game built with Flutter and Flame. Play 
 
 ### Customization
 
-- **Snake Colors**: 4 themes (Green, Blue, Orange, Pink)
+- **Snake Colors**: 4 themes (Green, Blue, Orange, Purple)
 - **Background Colors**: 4 themes (Dark Gray, Dark Blue, Dark Teal, Light Gray)
 - **Game Speed**: 4 levels (Slow, Normal, Fast, Insane)
 - All settings saved locally with shared_preferences
@@ -30,8 +30,9 @@ A complete cross-platform classic Snake game built with Flutter and Flame. Play 
 
 - Adapts to portrait and landscape orientations
 - Square game board with responsive scaling
-- Touch controls for mobile devices
-- Keyboard controls for desktop/web
+- Touch controls for mobile devices (portrait mode)
+- Swipe gestures for landscape mobile mode
+- Keyboard support for tablets with external keyboards
 - Material 3 UI with light/dark theme support
 
 ### Local Persistence
@@ -39,7 +40,15 @@ A complete cross-platform classic Snake game built with Flutter and Flame. Play 
 - High score tracking
 - Last 5 game scores
 - Settings persistence across sessions
-- Works offline on all platforms
+- Works 100% offline - no internet required
+
+## Privacy
+
+Fidi respects your privacy. The app:
+- Does **NOT** collect any personal data
+- Does **NOT** require internet connection
+- Stores all data locally on your device
+- See our [Privacy Policy](PRIVACY_POLICY.md) for details
 
 ## Project Structure
 
@@ -133,11 +142,33 @@ Output: `build/windows/runner/Release/`
 
 #### Android APK
 
+For development/testing:
 ```bash
 flutter build apk
 ```
 
+For production release with signing:
+1. Create `android/key.properties` (never commit this file):
+```properties
+storePassword=YOUR_PASSWORD
+keyPassword=YOUR_PASSWORD
+keyAlias=upload
+storeFile=../upload-keystore.jks
+```
+
+2. Generate your keystore:
+```bash
+keytool -genkey -v -keystore android/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+```
+
+3. Build signed APK:
+```bash
+flutter build apk --release
+```
+
 Output: `build/app/outputs/flutter-apk/app-release.apk`
+
+**⚠️ Security Note**: Never commit `key.properties` or `.jks` files to version control! These files are already in `.gitignore`.
 
 #### iOS (macOS only)
 
@@ -266,9 +297,12 @@ This project is open source and available for educational purposes.
 
 ## Credits
 
-Built with Flutter + Flame game engine.
-Created as a demonstration of cross-platform game development.
+**Developer:** Zarabanda Dev  
+**Website:** https://zarabanda-dev.web.app/  
+**Built with:** Flutter + Flame game engine
+
+© 2025 Zarabanda Dev. All rights reserved.
 
 ---
 
-**Enjoy playing Snake Flutter!** 🐍🎮
+**Enjoy playing Fidi!** 🐍🎮
