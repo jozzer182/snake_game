@@ -31,7 +31,7 @@ class SnakeFlutterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Snake Flutter',
+      title: 'Fidi - Snake Game',
       debugShowCheckedModeBanner: false,
       
       // Material 3 theme

@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                               ),
                               const SizedBox(width: 16),
                               Text(
-                                'Snake Flutter',
+                                'Fidi',
                                 style: Theme.of(context).textTheme.displayMedium?.copyWith(
                                       fontWeight: FontWeight.bold,
                                       color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Classic Snake Game',
+                            'Snake Game',
                             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                   color: Theme.of(context).colorScheme.onSecondaryContainer,
                                 ),
