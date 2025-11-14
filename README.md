@@ -4,14 +4,14 @@ A complete cross-platform classic Snake game built with Flutter and Flame. Play 
 
 ## 🎮 Play Now
 
-| Platform | Status | Link |
-|----------|--------|------|
-| 🌐 **Web** | ✅ Live | [Play on Web](https://fidisnakegame.web.app/) |
-| 🪟 **Windows** | ✅ Published | [Microsoft Store](https://apps.microsoft.com/detail/9nn77xz00r45) |
-| 📱 **Huawei** | 🔄 Under Review | AppGallery |
-| 🍎 **iOS** | 🔄 Under Review | App Store |
-| 🍎 **macOS** | 🔄 Under Review | App Store |
-| 📱 **Android** | 🔄 Under Review | Google Play Store |
+| Platform       | Status          | Link                                                              |
+| -------------- | --------------- | ----------------------------------------------------------------- |
+| 🌐 **Web**     | ✅ Live         | [Play on Web](https://fidisnakegame.web.app/)                     |
+| 🪟 **Windows** | ✅ Published    | [Microsoft Store](https://apps.microsoft.com/detail/9nn77xz00r45) |
+| 📱 **Huawei**  | 🔄 Under Review | AppGallery                                                        |
+| 🍎 **iOS**     | 🔄 Under Review | App Store                                                         |
+| 🍎 **macOS**   | 🔄 Under Review | App Store                                                         |
+| 📱 **Android** | 🔄 Under Review | Google Play Store                                                 |
 
 ## Features
 
