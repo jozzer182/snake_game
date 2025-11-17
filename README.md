@@ -8,9 +8,8 @@ A complete cross-platform classic Snake game built with Flutter and Flame. Play 
 |----------|--------|------|
 | 🌐 **Web** | ✅ Live | [Play on Web](https://fidisnakegame.web.app/) |
 | 🪟 **Windows** | ✅ Published | [Microsoft Store](https://apps.microsoft.com/detail/9nn77xz00r45) |
+| 🍎 **iOS/macOS** | ✅ Published | [App Store](https://apps.apple.com/us/app/fidi-snake-game/id6755296262) |
 | 📱 **Huawei** | 🔄 Under Review | AppGallery |
-| 🍎 **iOS** | 🔄 Under Review | App Store |
-| 🍎 **macOS** | 🔄 Under Review | App Store |
 | 📱 **Android** | 🔄 Under Review | Google Play Store |
 
 ## Features
